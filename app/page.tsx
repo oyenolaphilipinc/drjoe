@@ -49,7 +49,7 @@ export default function Component() {
         </Button>
       </header>
       {open && (
-          <div className="relative h-8 w-11.8/12 mr-2">
+          <div className="relative w-11.8/12 mr-2">
             <div className="border bg-white w-4/12 px-2 py-2 absolute top-0 right-0 shadow-lg flex flex-col items-center rounded-md">
               <Link href={"/"} className="mb-1 text-lg">Home</Link>
               <Link href={"/about"} className="mb-1 text-lg">About</Link>
