@@ -1,13 +1,21 @@
+"use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { useState } from "react"
+import { IoMdClose } from "react-icons/io";
 
 interface BoldIconProps{
   className?: string,
 }
 
 export default function Component() {
+  const [open, setOpen] = useState(false);
+
+  function hamburger(){
+    setOpen(!open);
+  }
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <header className="px-4 lg:px-6 h-14 flex items-center justify-between">
@@ -35,11 +43,22 @@ export default function Component() {
         <Button className="hidden lg:inline-flex">
           Get Started
         </Button>
-        <Button className="lg:hidden" size="icon" variant="outline">
-          <MenuIcon className="h-6 w-6" />
+        <Button className="lg:hidden" size="icon" variant="outline" onClick={hamburger}>
+          {open ? <IoMdClose className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
       </header>
+      {open && (
+          <div className="relative h-8 w-11.8/12 mr-2">
+            <div className="border bg-white w-4/12 px-2 py-2 absolute top-0 right-0 shadow-lg flex flex-col items-center rounded-md">
+              <Link href={"/"} className="mb-1 text-lg">Home</Link>
+              <Link href={"/about"} className="mb-1 text-lg">About</Link>
+              <Link href={"/about"} className="mb-1 text-lg">Blog</Link>
+              <Link href={"/about"} className="mb-2 text-lg">Services</Link>
+              <Button>Subscribe</Button>
+            </div>
+          </div>
+        )}
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
